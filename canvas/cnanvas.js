@@ -1,21 +1,49 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-
 canvas.width=900;
 canvas.height=600;
-///////////////////////////////////////////////////
+
+
+///////////////////////IMAGE////////////////////////////
 const img = new Image()
 img.src="../img/wp2572370.jpg";
+
+///////////////////////SOUND////////////////////////////
+const BRICK_HIT = new Audio();
+BRICK_HIT.src = "./assets/sounds/brick_hit.mp3";
+
+const WALL_HIT = new Audio();
+WALL_HIT.src = "./assets/sounds/wall.mp3";
+
+const LIFE_LOST = new Audio();
+LIFE_LOST.src = "./assets/sounds/life_lost.mp3";
+
+const PADDLE_HIT = new Audio();
+PADDLE_HIT.src = "./assets/sounds/paddle_hit.mp3";
+
+const WIN = new Audio();
+WIN.src = "./assets/sounds/win.mp3";
+
+const BG = new Audio();
+BG.src = "./assets/sounds/Harmony.mp3";
+//BG.loop = true;
+BG.volume = 0.2
+
+
+///////////////////////VARIABLES///////////////////////////
 
 let leftArrow = false ;
 let rightArrow = false;
 let kickBall = false;
 let LIFE = 3;
+
 const PADDEL_WIDTH = 120;
 const PADDEL_HEIGHT = 20;
 const PADDEL_MARGIN_BATTOM = 30;
-
 const BALL_RADIUS = 10;
+
+
+///////////////////////OBJECTS////////////////////////////
 
 const paddel = 
 {
@@ -35,6 +63,8 @@ const ball = {
     dy : -5
 }
 
+///////////////////////EVENTS////////////////////////////
+
 document.addEventListener("keydown",function(event){
     if(event.keyCode==37)
         leftArrow=true;
@@ -51,6 +81,9 @@ document.addEventListener("keyup",function(event){
         rightArrow=false;
 });
 
+
+
+///////////////////////DRAW FUNCTIONS////////////////////////////
 
 function drawPaddel(){
 ctx.fillStyle = "#444e67";
@@ -69,6 +102,9 @@ function drawBall(){
     ctx.closePath();
 }
 
+
+///////////////////////MOVE FUNCTIONS////////////////////////////
+
 function movePandde(){
     //if(kickBall)
     {
@@ -85,6 +121,7 @@ function moveBall(){
     {
         ball.x+=ball.dx;
         ball.y+=ball.dy;
+        BG.play();
     }
     else
     {
@@ -92,14 +129,25 @@ function moveBall(){
     }
 }
 
+
+///////////////////////COLLISION FUNCTIONS////////////////////////////
+
 function ballWallCollision(){
     if(ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0)
+    {
         ball.dx *= -1;
+        WALL_HIT.play();
+    }
     if(ball.y - ball.radius < 0)
+    {
         ball.dy *= -1;
+        WALL_HIT.play();
+    }
     if(ball.y+ball.radius > canvas.height)
     {
         LIFE--;
+        BG.pause();
+        LIFE_LOST.play();
         restBall();
         restPanddel();
     }
@@ -122,6 +170,7 @@ function ballPaddelCollision(){
     if(ball.x < paddel.x + paddel.width  && ball.x > paddel.x && 
        ball.y+ball.radius < paddel.y + paddel.height && ball.y+ball.radius > paddel.y)
     {
+        PADDLE_HIT.play();
         let collidePoint = ball.x - (paddel.x + paddel.width/2)
         collidePoint = collidePoint / (paddel.width/2);
         let angel = collidePoint*Math.PI/3;
@@ -130,6 +179,14 @@ function ballPaddelCollision(){
     }
 
 }
+
+function ballBrickCollision(){
+    
+}
+
+
+
+
 function draw(){
     drawPaddel();
     drawBall();
