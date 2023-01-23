@@ -1,7 +1,4 @@
-const gameSco = document.querySelector(".scoreValue");
-const lives = document.querySelector(".live");
 const menu = document.querySelector(".nav");
-const music = document.querySelector("audio");
 const div = document.createElement("div");
 const pause = document.createElement("div");
 const score = document.createElement("div");
@@ -11,10 +8,8 @@ const sound = document.createElement("i");
 const mute = document.createElement("i");
 const reset = document.createElement("i");
 const go = document.createElement("i");
-
-let flagIcon = 1;
-gameSco.textContent = gameScore;
-lives.textContent = LIFE;
+const BG = document.querySelector('audio');
+BG.volume = 0.2;
 
 menu.onclick = function () {
   ///new div
@@ -42,16 +37,16 @@ menu.onclick = function () {
   //event icon 2 sound
   sound.onclick = function () {
     icon.replaceChild(mute, sound);
-    music.pause();
-    flagIcon = 0;
+    BG.pause();
+    playsound = false;
   };
   mute.onclick = function () {
     icon.replaceChild(sound, mute);
-    music.play();
-    flagIcon = 1;
+    BG.play();
+    playsound = true;
   };
 
-  if (flagIcon) {
+  if (playsound) {
     icon.appendChild(sound);
   } else {
     icon.appendChild(mute);
