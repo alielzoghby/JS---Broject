@@ -323,8 +323,9 @@ red();
 function resetGame() {
   restBall();
   restPanddel();
+  initialize();
   drawBricks();
-  LIFE = 3;
+  LIFE = 5;
   gameScore = 0;
 }
 
