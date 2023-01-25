@@ -338,8 +338,10 @@ function ballBrickCollision() {
           if (playsound) BRICK_HIT.play();
           brick.status -= 1;
           ball.dy *= -1;
-          gameScore += 10;
-          numBricks -= 1;
+          if (brick.status == 0) {
+            gameScore += 10;
+            numBricks -= 1;
+          }
           if (numBricks == 0) {
             win();
           }
