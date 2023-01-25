@@ -31,17 +31,20 @@ const WIN = new Audio();
 WIN.src = "assets/sounds/win.mp3";
 
 ///////////////////////VARIABLES///////////////////////////
+let level = 1;
 
 let leftArrow = false;
 let rightArrow = false;
 let kickBall = false;
 let LIFE = 5;
 let gameScore = 0;
-const PADDEL_WIDTH = 120;
+let PADDEL_WIDTH = 120;
 const PADDEL_HEIGHT = 20;
 const PADDEL_MARGIN_BATTOM = 30;
 
-const BALL_RADIUS = 10;
+//
+
+const BALL_RADIUS = 9;
 
 let bricks = [];
 let colors = ["blue", "yellow", "red"];
@@ -53,6 +56,7 @@ let numBricks = 0;
 let yellowBrick;
 let blueBrick;
 let redBrick;
+let shpball;
 
 const paddel = {
   x: canvas.width / 2 - PADDEL_WIDTH / 2,
@@ -66,9 +70,9 @@ const ball = {
   x: canvas.width / 2,
   y: paddel.y - BALL_RADIUS,
   radius: BALL_RADIUS,
-  speed: 5,
-  dx: 5 * (Math.random() * 2 - 1),
-  dy: -5,
+  speed: 5 * level,
+  dx: 5 * (Math.random() * 2 - 1) * level,
+  dy: -5 * level,
 };
 
 document.addEventListener("keydown", function (event) {
@@ -93,21 +97,35 @@ canvas.addEventListener("click", () => {
   kickBall = true;
 });
 
+// function shapePaddel() {
+//   shpPaddel = new Image();
+//   shpPaddel.src = "../—Pngtree—wooden board plant title box_5780929 (2).png";
+// }
+// shapePaddel();
+
 function drawPaddel() {
   ctx.fillStyle = "#444e67";
   ctx.fillRect(paddel.x, paddel.y, paddel.width, paddel.height);
   ctx.strokeStyle = "#8ba0ff";
   ctx.strokeRect(paddel.x, paddel.y, paddel.width, paddel.height);
+  // ctx.drawImage(shpPaddel, paddel.x, paddel.y);
 }
+
+function shapeBAll() {
+  shpball = new Image(12, 12);
+  shpball.src = "../pngwing.com (1).png";
+}
+shapeBAll();
 
 function drawBall() {
   ctx.beginPath();
   ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
   ctx.fillStyle = "#8ba0ff";
   ctx.fill();
-  ctx.strokeStyle = "#444e67";
+  ctx.strokeStyle = "#ffffff";
   ctx.stroke();
   ctx.closePath();
+  ctx.drawImage(shpball, ball.x - 10, ball.y - 10);
 }
 
 function movePandde() {
@@ -118,7 +136,6 @@ function movePandde() {
       paddel.x += paddel.dx;
   }
 }
-
 function moveBall() {
   if (kickBall) {
     ball.x += ball.dx;
@@ -140,17 +157,22 @@ function ballWallCollision() {
   if (ball.y + ball.radius > canvas.height) {
     if (playsound) LIFE_LOST.play();
     LIFE--;
+
     restBall();
     restPanddel();
+    if (LIFE <= 0) {
+      lose();
+    }
   }
 }
 
 function restBall() {
   ball.x = canvas.width / 2;
   ball.y = paddel.y - BALL_RADIUS;
-  ball.dx = 5 * (Math.random() * 2 - 1);
-  ball.dy = -5;
+  ball.dx = 5 * (Math.random() * 2 - 1) * level;
+  ball.dy = -5 * level;
   kickBall = false;
+  ball.speed = 5 * level;
 }
 
 function restPanddel() {
@@ -204,11 +226,23 @@ function drawBricks() {
         brick.x = c * (brick.width + brick.padding) + offsetLeft;
         brick.y = r * (brick.height + brick.padding) + offsetTop;
         if (brick.color === "blue") {
-          ctx.drawImage(blueBrick, brick.x, brick.y);
+          if (brick.status == 1) {
+            ctx.drawImage(blueBrick, brick.x, brick.y);
+          } else {
+            ctx.drawImage(blueBrick, brick.x, brick.y);
+          }
         } else if (brick.color === "yellow") {
-          ctx.drawImage(yellowBrick, brick.x, brick.y);
+          if (brick.status == 1) {
+            ctx.drawImage(yellowBrick, brick.x, brick.y);
+          } else {
+            ctx.drawImage(yellowBrick, brick.x, brick.y);
+          }
         } else if (brick.color === "red") {
-          ctx.drawImage(redBrick, brick.x, brick.y);
+          if (brick.status == 1) {
+            ctx.drawImage(redBrick, brick.x, brick.y);
+          } else {
+            ctx.drawImage(redBrick, brick.x, brick.y);
+          }
         } else {
           roundedRect(
             ctx,
@@ -243,6 +277,7 @@ function ballWallCollision() {
     restPanddel();
   }
 }
+
 function blue() {
   blueBrick = new Image();
   blueBrick.onload = function () {
@@ -305,6 +340,9 @@ function ballBrickCollision() {
           ball.dy *= -1;
           gameScore += 10;
           numBricks -= 1;
+          if (numBricks == 0) {
+            win();
+          }
         }
       }
     }
@@ -338,7 +376,6 @@ function draw() {
   drawPaddel();
   drawBall();
 }
-
 function update() {
   drawBricks();
   movePandde();
@@ -350,11 +387,29 @@ function update() {
 }
 
 function loop() {
-  ctx.drawImage(img, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   draw();
   update();
-
   requestAnimationFrame(loop);
 }
 
 loop();
+
+function lose() {}
+
+function win() {}
+
+// function baddelWidth{
+//   setTimeout(() => {
+//       paddel.width = 220;
+//       console.log("first");
+//       setTimeout(() => {
+//         paddel.width = 120;
+//         console.log("second");
+//       }, 10000);
+//     }, 0);
+// }
+
+// function lifeIncress() {
+//   LIFE += 1;
+// }

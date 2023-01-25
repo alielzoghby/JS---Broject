@@ -46,6 +46,8 @@ canvas {
   -moz-box-shadow: 0px 0px 24px 0px rgba(157, 178, 237, 0.99),
     0px 0px 19px 0px rgba(157, 178, 237, 0.99) inset;
   overflow: hidden;
+  background: url("../img/wp2572370.jpg");
+  background-size: cover;
 }
 
 .new-menu {

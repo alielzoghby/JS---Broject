@@ -8,7 +8,7 @@ const sound = document.createElement("i");
 const mute = document.createElement("i");
 const reset = document.createElement("i");
 const go = document.createElement("i");
-const BG = document.querySelector('audio');
+const BG = document.querySelector("audio");
 BG.volume = 0.2;
 
 menu.onclick = function () {
@@ -70,6 +70,7 @@ menu.onclick = function () {
   go.onclick = () => {
     div.remove();
     document.body.classList.remove("back");
+    glag = 1;
   };
 
   // add all icons
