@@ -1,0 +1,85 @@
+@import url('https://fonts.cdnfonts.com/css/league-spartan');
+* {
+
+    box-sizing: border-box;
+ }
+  body{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-image: url("../img/wp2572370.jpg");
+}
+
+.menu {
+    height: 470px;
+
+    
+    margin-right: 90px;
+    margin-top:50px;
+    width:430px;
+   
+}
+.image1{
+ width: 320px;
+ position: relative;
+ top: -100px;
+ left: 80px;
+ opacity: 0.3;
+ height: 310px;
+}
+.image2{
+    width: 270px;
+    position:  relative;
+    top: -310px;
+ left: 100px;
+}
+.game-space {
+    margin-top: 55px;
+    margin-left: 130px;
+    font-family: 'League Spartan';
+    color: #7DDCFA;
+    font-size: 65px;
+     font-weight: 800;
+     
+}
+.ball{
+    margin-left: 170px;
+    font-family: 'League Spartan';
+    color: #FF66C4;
+    font-size: 65px;
+     font-weight: 800;
+     text-shadow: 0 0 5px white;
+}
+.start{
+    margin-top: -330px;
+    margin-left: 145px;
+    
+    
+    
+}
+.start a{
+    text-decoration: none;
+    color: #FFB932;
+    font-family: 'League Spartan';
+    color: #FFB932;
+    font-size: 52px;
+     font-weight: 800;
+     text-shadow :0 0 5px white;
+}
+.high{
+    margin-left: 90px;
+    font-family: 'League Spartan';
+    color: #FF66C4;
+    font-size: 47px;
+     font-weight: 800;
+     text-shadow: 0 0 5px white;
+}
+.setting{
+    margin-left: 120px;
+    font-family: 'League Spartan';
+color: #FFB932;
+    font-size: 47px;
+     font-weight: 800;
+     text-shadow:0 0 5px white;
+}
