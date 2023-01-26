@@ -93,7 +93,8 @@ p{
 margin-bottom: 25px;
 }
 button{
-
+  font-family: "Rubik Glitch", cursive;
+  font-size: large;
   display: inline;
   width: 95px;
   height: 60px;
