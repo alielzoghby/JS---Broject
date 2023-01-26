@@ -6,12 +6,13 @@
 body {
   background-image: url(img/wp2572370.jpg);
   background-size: cover;
-  /* padding: 2vh; */
+  padding: 2vh; 
   display: flex;
   justify-content: center;
 }
 .menu {
   height: 7vh;
+  padding: 4px 40px;
 }
 .game {
   position: relative;
