@@ -329,22 +329,22 @@ function ballBrickCollision() {
     for (var r = 0; r < rowCount; r++) {
       var brick = bricks[c][r];
       if (brick.status == 1 || brick.status == 2) {
-        if (
-          ball.x + ball.radius > brick.x &&
-          ball.x - ball.radius < brick.x + brick.width &&
-          ball.y + ball.radius > brick.y &&
-          ball.y - ball.radius < brick.y + brick.height
-        ) {
+        if (ball.x + ball.radius > brick.x &&
+            ball.x - ball.radius < brick.x + brick.width &&
+            ball.y + ball.radius > brick.y &&
+            ball.y - ball.radius < brick.y + brick.height) {
+          if (ball.x  < brick.x || ball.x  > brick.x + brick.width)
+          {
+            ball.dx *= -1;
+          }
+          else
+          {
+              ball.dy *= -1;
+          }
           if (playsound) BRICK_HIT.play();
-          brick.status -= 1;
-          ball.dy *= -1;
-          if (brick.status == 0) {
-            gameScore += 10;
-            numBricks -= 1;
-          }
-          if (numBricks == 0) {
-            win();
-          }
+              brick.status -= 1;
+          gameScore += 10;
+          numBricks -= 1;
         }
       }
     }
