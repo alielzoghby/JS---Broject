@@ -61,6 +61,7 @@ menu.onclick = function () {
 
   reset.onclick = function () {
     resetGame();
+    endGame = false;
     div.remove();
     document.body.classList.remove("back");
   };
@@ -74,6 +75,7 @@ menu.onclick = function () {
     div.remove();
     document.body.classList.remove("back");
     glag = 1;
+    endGame = false;
   };
 
   // add all icons
@@ -81,4 +83,8 @@ menu.onclick = function () {
 
   document.body.classList.add("back");
   document.body.appendChild(div);
+
+  endGame = true;
 };
+
+

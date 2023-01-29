@@ -42,7 +42,7 @@ let level = 1;
 let leftArrow = false;
 let rightArrow = false;
 let kickBall = false;
-let LIFE = 10;
+let LIFE = 1;
 let gameScore = 0;
 let PADDEL_WIDTH = 120;
 const PADDEL_HEIGHT = 20;
@@ -54,7 +54,7 @@ const BALL_RADIUS = 9;
 
 let bricks = [];
 let colors = ["blue", "yellow", "red", "gray", "blue", "yellow", "red"];
-let rowCount = 4;
+let rowCount = 1;
 let colCount = Math.floor((canvas.offsetWidth - 160) / 80);
 let offsetTop = 30;
 let offsetLeft = 15;
@@ -406,7 +406,7 @@ function resetGame() {
   restPanddel();
   initialize();
   drawBricks();
-  LIFE = 5;
+  LIFE = 10;
   gameScore = 0;
   loser.style.display = "none";
   winner.style.display = "none";
