@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="score">SCORE : <span class="scoreValue">200</span></div>
+      <div class="lives">
+        <div class="heart"></div>
+        <span class="live"> 3 </span>
+      </div>
+      <div class="nav"><i class="fa-solid fa-bars"></i></div>
+    </div>
+
+    <audio id="player" autoplay>
+      <source src="../assets/sounds/Harmony.mp3" type="audio/mp3" />
+    </audio>
+
+    <!-- <div class="levels-menu">
+      <p>Levels</p>
+      <div class="btns">
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+        <button class="btn">6</button>
+      </div>
+    </div> -->
+
+    <canvas></canvas>
+
+    <script src="./cnanvas.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
