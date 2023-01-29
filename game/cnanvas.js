@@ -6,11 +6,11 @@ canvas.height = 560;
 
 ////////////////////////DOM ELEMENT//////////////////////
 const lives = document.querySelector(".live");
-const gameSco = document.querySelector(".scoreValue");
+const gameSco = document.querySelectorAll(".scoreValue");
 
 ///////////////////////IMAGE////////////////////////////
 const img = new Image();
-img.src = "../img/wp2572370.jpg";
+img.src = "../assets/img/bg/wp2572370.jpg";
 
 ///////////////////////SOUND////////////////////////////
 let playsound = true;
@@ -30,13 +30,19 @@ PADDLE_HIT.src = "../assets/sounds/paddle_hit.mp3";
 const WIN = new Audio();
 WIN.src = "../assets/sounds/win.mp3";
 
-///////////////////////VARIABLES///////////////////////////
-let level = 1;
+///////////////////////Winner&Loser/////////////////////////
 
+const loser = document.getElementById("loser");
+const winner = document.getElementById("winner");
+var playAgain = document.getElementById("playAgain");
+
+///////////////////////VARIABLES///////////////////////////
+
+let level = 1;
 let leftArrow = false;
 let rightArrow = false;
 let kickBall = false;
-let LIFE = 5;
+let LIFE = 1;
 let gameScore = 0;
 let PADDEL_WIDTH = 120;
 const PADDEL_HEIGHT = 20;
@@ -47,7 +53,7 @@ const PADDEL_MARGIN_BATTOM = 30;
 const BALL_RADIUS = 9;
 
 let bricks = [];
-let colors = ["blue", "yellow", "red"];
+let colors = ["blue", "yellow", "red", "gray", "blue", "yellow", "red"];
 let rowCount = 4;
 let colCount = Math.floor((canvas.offsetWidth - 160) / 80);
 let offsetTop = 30;
@@ -56,7 +62,10 @@ let numBricks = 0;
 let yellowBrick;
 let blueBrick;
 let redBrick;
+let grayBrick;
 let shpball;
+
+var endGame = false;
 
 const paddel = {
   x: canvas.width / 2 - PADDEL_WIDTH / 2,
@@ -210,10 +219,12 @@ function initialize() {
         color: colors[Math.floor(Math.random() * colors.length)],
         status: 2,
       };
+      if(brick.color === "gray") brick.status = 3;
+      else numBricks += 1;
       bricks[c][r] = brick;
-      numBricks += 1;
     }
   }
+  console.log(numBricks);
 }
 
 // draw bricks
@@ -221,7 +232,7 @@ function drawBricks() {
   for (var c = 0; c < colCount; c++) {
     for (var r = 0; r < rowCount; r++) {
       var brick = bricks[c][r];
-      if (brick.status == 2 || brick.status == 1) {
+      if (brick.status == 2 || brick.status == 1 || brick.status == 3) {
         brick.x = c * (brick.width + brick.padding) + offsetLeft;
         brick.y = r * (brick.height + brick.padding) + offsetTop;
         if (brick.color === "blue") {
@@ -240,8 +251,12 @@ function drawBricks() {
           if (brick.status == 1) {
             ctx.drawImage(redBrick, brick.x, brick.y);
           } else {
-            drawre("#Be2528 ", "#Ff0005", brick.x, brick.y);
+            drawre("#Be2528", "#Ff0005", brick.x, brick.y);
           }
+        } else if (brick.color === "gray") {
+            if (brick.status == 3) {
+              drawre("#454545", "#454545", brick.x, brick.y);
+            }
         } else {
           roundedRect(
             ctx,
@@ -253,9 +268,9 @@ function drawBricks() {
             brick.color
           );
         }
-      }
     }
   }
+}
 }
 
 function drawre(color, border, xx, yy) {
@@ -300,6 +315,16 @@ function blue() {
   blueBrick.src = "../assets/img/blue.png";
 }
 
+// function gray() {
+//   grayBrick = new Image();
+//   grayBrick.onload = function () {
+//     setInterval(function () {
+//       drawBricks();
+//     }, 1000 / 30);
+//   };
+//   // grayBrick.src = "../assets/img/gray.png";
+// }
+
 function yellow() {
   yellowBrick = new Image();
   yellowBrick.onload = function () {
@@ -340,7 +365,7 @@ function ballBrickCollision() {
   for (var c = 0; c < colCount; c++) {
     for (var r = 0; r < rowCount; r++) {
       var brick = bricks[c][r];
-      if (brick.status == 1 || brick.status == 2) {
+      if (brick.status == 1 || brick.status == 2 || brick.status == 3) {
         if (
           ball.x + ball.radius > brick.x &&
           ball.x - ball.radius < brick.x + brick.width &&
@@ -353,10 +378,11 @@ function ballBrickCollision() {
             ball.dy *= -1;
           }
           if (playsound) BRICK_HIT.play();
+          if(brick.status === 3) return;
           brick.status -= 1;
           gameScore += 10;
           numBricks -= 1;
-          generatePowers(brick);
+          // generatePowers(brick);
         }
       }
     }
@@ -371,6 +397,8 @@ yellow();
 
 red();
 
+// gray();
+
 ////////////////////////
 function resetGame() {
   restBall();
@@ -379,10 +407,12 @@ function resetGame() {
   drawBricks();
   LIFE = 5;
   gameScore = 0;
+  loser.style.display = "none";
+  winner.style.display = "none";
 }
 
 function restScore() {
-  gameSco.textContent = gameScore;
+  gameSco.forEach(e=>e.textContent = gameScore);
   lives.textContent = LIFE;
 }
 
@@ -397,45 +427,69 @@ function update() {
   ballWallCollision();
   ballPaddelCollision();
   ballBrickCollision();
+  win();
+  lose();
   restScore();
 }
 
 function loop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  draw();
-  update();
-  requestAnimationFrame(loop);
+  if(endGame === true) {requestAnimationFrame(loop);
+  }else{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw();
+    update();
+    requestAnimationFrame(loop);
+  }
 }
 
 loop();
 
-function lose() {}
+function restart(){
+  window.location.href = "./canvas.html";
+}
 
-function win() {}
-
-// //////////////////////////////Bouns/////////////////////////////////
-function generatePowers(brick) {
-  let numb = Math.floor(Math.random() * 7);
-  console.log(numb);
-  if (numb === 5) {
-    dropPower(brick);
+function lose() {
+  if(LIFE <= 0){
+    endGame = true;
+    loser.style.display = "block";
+    document.body.classList.add("back");
   }
 }
 
-function dropPower(brick) {
-  console.log(brick);
-  console.log(brick.x);
-  console.log(brick.y);
+function win() {
+  if(numBricks === 0){
+      endGame = true;
+      kickBall = false;
+      winner.style.display = "block";
+      document.body.classList.add("back");
+  }
 }
 
-const triggerPower = (powerup) => {
-  powerup.remove();
-  ball.classList.add("powerball");
-  powerupTimerId = setTimeout(function () {
-    clearTimeout(powerupTimerId);
-    ball.classList.remove("powerball");
-  }, 10000);
-};
+// //////////////////////////////Bouns/////////////////////////////////
+// function generatePowers(brick) {
+//   let numb = Math.floor(Math.random() * 7);
+//   console.log(numb);
+//   if (numb === 5) {
+//     dropPower(brick);
+//   }
+// }
+
+// function dropPower(brick) {
+//   console.log(brick);
+//   console.log(brick.x);
+//   console.log(brick.y);
+// }
+
+// const triggerPower = (powerup) => {
+//   powerup.remove();
+//   ball.classList.add("powerball");
+//   powerupTimerId = setTimeout(function () {
+//     clearTimeout(powerupTimerId);
+//     ball.classList.remove("powerball");
+//   }, 10000);
+// };
+
+//////////////////////////////////////////////////////////////////////////
 
 // function baddelWidth{
 //   setTimeout(() => {

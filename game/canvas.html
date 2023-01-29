@@ -19,10 +19,11 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./End.css" />
   </head>
   <body>
     <div class="nav-bar">
-      <div class="score">SCORE : <span class="scoreValue">200</span></div>
+      <div class="score">SCORE : <span class="scoreValue"></span></div>
       <div class="lives">
         <div class="heart"></div>
         <span class="live"> 3 </span>
@@ -33,6 +34,32 @@
     <audio id="player" autoplay>
       <source src="../assets/sounds/Harmony.mp3" type="audio/mp3" />
     </audio>
+
+    <!-- you lose -->
+    <div id="loser" class="loser">
+      <img src="./end.gif" />
+      <div class="upperLoser">
+        <div id="finalScore">
+          Score:
+          <span class="scoreValue"> </span>
+        </div>
+        <div onclick="restart()" class="playAgain"></div>
+        <div id="finalMainMenu">
+          <a href="#"> Main Menu</a>
+        </div>
+      </div>
+    </div>
+    <!-- you win -->
+    <div id="winner" class="winner">
+      <img src="./next.gif" />
+      <div class="upperWinner">
+        <div id="goToHome" onclick="go()"></div>
+        <div class="nextLeve"></div>
+        <div id="finalMainMenu">
+          <a href="#"></a>
+        </div>
+      </div>
+    </div>
 
     <!-- <div class="levels-menu">
       <p>Levels</p>
