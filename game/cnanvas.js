@@ -449,6 +449,10 @@ function restart(){
   window.location.href = "./canvas.html";
 }
 
+function goToHome(){
+  window.location.href = "../index.html";
+}
+
 function lose() {
   if(LIFE <= 0){
     endGame = true;
