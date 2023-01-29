@@ -42,7 +42,7 @@ let level = 1;
 let leftArrow = false;
 let rightArrow = false;
 let kickBall = false;
-let LIFE = 1;
+let LIFE = 10;
 let gameScore = 0;
 let PADDEL_WIDTH = 120;
 const PADDEL_HEIGHT = 20;
@@ -379,9 +379,10 @@ function ballBrickCollision() {
           }
           if (playsound) BRICK_HIT.play();
           if(brick.status === 3) return;
+          if(brick.status==1)
+            numBricks -= 1;
           brick.status -= 1;
           gameScore += 10;
-          numBricks -= 1;
           // generatePowers(brick);
         }
       }
