@@ -79,14 +79,15 @@ const paddel = {
   height: PADDEL_HEIGHT,
   dx: 5,
 };
-
 const ball = {
+   
   x: canvas.width / 2,
   y: paddel.y - BALL_RADIUS,
   radius: BALL_RADIUS,
-  speed: 5+level,
+  speed: 7,
   dx: 5 * (Math.random() * 2 - 1) ,
   dy: -5 ,
+ 
 };
 
 document.addEventListener("keydown", function (event) {
@@ -187,7 +188,7 @@ function restBall() {
   ball.dx = 5 * (Math.random() * 2 - 1) ;
   ball.dy = -5 ;
   kickBall = false;
-  ball.speed = 5 ;
+ 
 }
 
 function restPanddel() {
