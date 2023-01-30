@@ -45,6 +45,7 @@
     color: wheat;
     display: inline;
     font-size: 25px;
+    cursor: pointer;
 }
 
 #finalScore{
