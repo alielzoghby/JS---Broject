@@ -455,7 +455,7 @@ function goToHome(){
 }
 function  GoToNextLevel(){
   winner.style.display="none";
-
+  endGame = false;
   let islevelDone=true;
     for (let c = 0; c < colCount; c++) {
       for (let r = 0; r < rowCount; r++) {
@@ -484,7 +484,7 @@ function lose() {
 
 function win() {
   if(numBricks === 0){
-    kickBall = false;
+    endGame = true;
       winner.style.display = "block";
     
   }
