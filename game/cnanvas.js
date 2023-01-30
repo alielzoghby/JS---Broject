@@ -34,15 +34,19 @@ WIN.src = "../assets/sounds/win.mp3";
 
 const loser = document.getElementById("loser");
 const winner = document.getElementById("winner");
+
+
+
 var playAgain = document.getElementById("playAgain");
 
 ///////////////////////VARIABLES///////////////////////////
 
-let level = 1;
-let level_max=5;
+let level=1;
+let level_max=6;
 let leftArrow = false;
 let rightArrow = false;
 let kickBall = false;
+let startgame= 0;
 let LIFE = 3;
 let gameScore = 0;
 let PADDEL_WIDTH = 120;
@@ -80,7 +84,7 @@ const ball = {
   x: canvas.width / 2,
   y: paddel.y - BALL_RADIUS,
   radius: BALL_RADIUS,
-  speed: 5 ,
+  speed: 5+level,
   dx: 5 * (Math.random() * 2 - 1) ,
   dy: -5 ,
 };
@@ -114,11 +118,12 @@ canvas.addEventListener("click", () => {
 // shapePaddel();
 
 function drawPaddel() {
+  if(startgame==1){
   ctx.fillStyle = "#444e67";
   ctx.fillRect(paddel.x, paddel.y, paddel.width, paddel.height);
   ctx.strokeStyle = "#8ba0ff";
   ctx.strokeRect(paddel.x, paddel.y, paddel.width, paddel.height);
-}
+}}
 
 function shapeBAll() {
   shpball = new Image(12, 12);
@@ -127,6 +132,7 @@ function shapeBAll() {
 shapeBAll();
 
 function drawBall() {
+  if(startgame==1){
   ctx.beginPath();
   ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
   ctx.fillStyle = "#8ba0ff";
@@ -135,7 +141,7 @@ function drawBall() {
   ctx.stroke();
   ctx.closePath();
   ctx.drawImage(shpball, ball.x - 10, ball.y - 10);
-}
+}}
 
 function movePandde() {
   //if(kickBall)
@@ -208,6 +214,7 @@ function ballPaddelCollision() {
 //////////////////////////////////////////////////////////////////////breaks
 
 function initialize() {
+  if(startgame==1){
   for (var c = 0; c < colCount; c++) {
     bricks[c] = [];
     for (var r = 0; r < rowCount; r++) {
@@ -226,10 +233,11 @@ function initialize() {
     }
   }
   console.log(numBricks);
-}
+}}
 
 // draw bricks
 function drawBricks() {
+  if(startgame==1){
   for (var c = 0; c < colCount; c++) {
     for (var r = 0; r < rowCount; r++) {
       var brick = bricks[c][r];
@@ -272,7 +280,7 @@ function drawBricks() {
     }
   }
 }
-}
+}}
 
 function drawre(color, border, xx, yy) {
   let w = 79;
@@ -363,6 +371,7 @@ function ballPaddelCollision() {
 }
 
 function ballBrickCollision() {
+
   for (var c = 0; c < colCount; c++) {
     for (var r = 0; r < rowCount; r++) {
       var brick = bricks[c][r];
@@ -423,6 +432,7 @@ function draw() {
   drawBall();
 }
 function update() {
+  if(startgame==1){
   drawBricks();
   movePandde();
   moveBall();
@@ -433,8 +443,9 @@ function update() {
   lose();
   restScore();
 }
-
+}
 function loop() {
+
   if(endGame === true) {requestAnimationFrame(loop);
   }else{
     ctx.clearRect(0, 0, canvas.width, canvas.height);
