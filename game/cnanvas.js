@@ -79,14 +79,15 @@ const paddel = {
   height: PADDEL_HEIGHT,
   dx: 5,
 };
-const ball = {
-   
+
+
+const ball = {   
   x: canvas.width / 2,
   y: paddel.y - BALL_RADIUS,
   radius: BALL_RADIUS,
-  speed: 7,
-  dx: 5 * (Math.random() * 2 - 1) ,
-  dy: -5 ,
+  speed:6,
+  dx:6* (Math.random() * 2 - 1) ,
+  dy: -6,
  
 };
 
@@ -109,7 +110,8 @@ setTimeout(() => {
   });
 }, 1000);
 canvas.addEventListener("click", () => {
-  kickBall = true;
+
+kickBall = true;
 });
 
 // function shapePaddel() {
@@ -154,8 +156,10 @@ function movePandde() {
 }
 function moveBall() {
   if (kickBall) {
+    
     ball.x += ball.dx;
     ball.y += ball.dy;
+
   } else {
     ball.x = paddel.x + paddel.width / 2;
   }
@@ -414,11 +418,12 @@ red();
 ////////////////////////
 function resetGame() {
   // restart();
+  numBricks=0;
   restBall();
   restPanddel();
   initialize();
   drawBricks();
-  LIFE = 10;
+  LIFE = 3;
   gameScore = 0;
   paddel.width = 120;
   numBricks = 0;

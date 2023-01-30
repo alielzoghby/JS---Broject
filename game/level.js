@@ -1,6 +1,11 @@
 const lm= document.getElementById("lm");
 const nav= document.getElementById("nav");
 const btn1= document.getElementById("btn1");
+
+
+
+
+
 btn1.addEventListener("click", (e) => {
    lm.style.display="none"; 
   nav.style.display = "flex";
