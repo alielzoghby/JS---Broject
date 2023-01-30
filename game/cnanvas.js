@@ -39,10 +39,11 @@ var playAgain = document.getElementById("playAgain");
 ///////////////////////VARIABLES///////////////////////////
 
 let level = 1;
+let level_max=5;
 let leftArrow = false;
 let rightArrow = false;
 let kickBall = false;
-let LIFE = 1;
+let LIFE = 3;
 let gameScore = 0;
 let PADDEL_WIDTH = 120;
 const PADDEL_HEIGHT = 20;
@@ -79,9 +80,9 @@ const ball = {
   x: canvas.width / 2,
   y: paddel.y - BALL_RADIUS,
   radius: BALL_RADIUS,
-  speed: 5 * level,
-  dx: 5 * (Math.random() * 2 - 1) * level,
-  dy: -5 * level,
+  speed: 5 ,
+  dx: 5 * (Math.random() * 2 - 1) ,
+  dy: -5 ,
 };
 
 document.addEventListener("keydown", function (event) {
@@ -177,10 +178,10 @@ function ballWallCollision() {
 function restBall() {
   ball.x = canvas.width / 2;
   ball.y = paddel.y - BALL_RADIUS;
-  ball.dx = 5 * (Math.random() * 2 - 1) * level;
-  ball.dy = -5 * level;
+  ball.dx = 5 * (Math.random() * 2 - 1) ;
+  ball.dy = -5 ;
   kickBall = false;
-  ball.speed = 5 * level;
+  ball.speed = 5 ;
 }
 
 function restPanddel() {
@@ -454,7 +455,27 @@ function restart(){
 function goToHome(){
   window.location.href = "../index.html";
 }
+function  GoToNextLevel(){
+  winner.style.display="none";
+  endGame = false;
+  let islevelDone=true;
+    for (let c = 0; c < colCount; c++) {
+      for (let r = 0; r < rowCount; r++) {
+     islevelDone = islevelDone &&   bricks[c][r].status!=2;
+   }}
+   if(islevelDone){
+    if(level>level_max){
+      endGame=true;
+      return;
+    }
+    restBall();
+    rowCount++;
+    initialize();
+    ball.speed+=0.5;
+    level++;
 
+   }
+  }
 function lose() {
   if(LIFE <= 0){
     endGame = true;
@@ -465,10 +486,9 @@ function lose() {
 
 function win() {
   if(numBricks === 0){
-      endGame = true;
-      kickBall = false;
+    endGame = true;
       winner.style.display = "block";
-      document.body.classList.add("back");
+    
   }
 }
 
