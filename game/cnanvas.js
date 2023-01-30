@@ -402,14 +402,16 @@ red();
 
 ////////////////////////
 function resetGame() {
+  // restart();
   restBall();
   restPanddel();
   initialize();
   drawBricks();
   LIFE = 10;
   gameScore = 0;
-  loser.style.display = "none";
-  winner.style.display = "none";
+  paddel.width = 120;
+  numBricks = 0;
+  initialize();
 }
 
 function restScore() {
