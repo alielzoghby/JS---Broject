@@ -418,15 +418,13 @@ red();
 ////////////////////////
 function resetGame() {
   // restart();
-  numBricks=0;
   restBall();
   restPanddel();
-  initialize();
   drawBricks();
   LIFE = 3;
   gameScore = 0;
   paddel.width = 120;
-  numBricks = 0;
+  numBricks=0;
   initialize();
 }
 
