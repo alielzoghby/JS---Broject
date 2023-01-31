@@ -18,11 +18,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./End.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/End.css" />
   </head>
   <body>
-    <div id="nav" class="nav-bar" style="display: none">
+    <div id="nav" class="nav-bar">
       <div class="score">SCORE : <span class="scoreValue"></span></div>
       <div class="lives">
         <div class="heart"></div>
@@ -37,7 +37,7 @@
 
     <!-- you lose -->
     <div id="loser" class="loser">
-      <img src="./end.gif" />
+      <img src="../assets/img/result/end.gif" />
       <div class="upperLoser">
         <div id="finalScore">
           Score:
@@ -49,9 +49,10 @@
         </div>
       </div>
     </div>
+
     <!-- you win -->
     <div id="winner" class="winner">
-      <img src="./next.gif" />
+      <img src="../assets/img/result/next.gif" />
       <div class="upperWinner">
         <div id="goToHome" onclick="goToHome()"></div>
         <div class="nextLevel" onclick="GoToNextLevel()"></div>
@@ -70,12 +71,11 @@
         <button class="btn" id="btn6">6</button>
       </div>
     </div>
-    -->
 
     <canvas></canvas>
 
-    <script src="./cnanvas.js"></script>
-    <script src="main.js"></script>
-    <script src="level.js"></script>
+    <script src="script/cnanvas.js"></script>
+    <script src="script/main.js"></script>
+    <script src="script/level.js"></script>
   </body>
 </html>
