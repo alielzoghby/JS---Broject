@@ -68,7 +68,6 @@ var endGame = false;
 
 /////////////////////////////////////////////////////bounus////////////////////////
 let luck = 3;
-let bounus = { x: 0, y: 0 };
 let allPower = [
   "../assets/img/power/width.png",
   "../assets/img/power/balls.png",
@@ -385,8 +384,6 @@ function ballBrickCollision() {
             if (brick.status == 1) numBricks -= 1;
             brick.status -= 1;
             gameScore += 10;
-            bounus.x = brick.x;
-            bounus.y = brick.y;
             if (brick.status == 0) {
               generatePowers(brick);
             }
@@ -459,6 +456,7 @@ function goToHome() {
 
 function GoToNextLevel() {
   winner.style.display = "none";
+  document.body.classList.remove("back");
   endGame = false;
   let islevelDone = true;
   for (let c = 0; c < colCount; c++) {
@@ -471,11 +469,15 @@ function GoToNextLevel() {
       endGame = true;
       return;
     }
-    restBall();
     rowCount++;
-    initialize();
     ball.speed += 0.5;
     level++;
+    restBall();
+    restPanddel();
+    initialize();
+    clearInterval(ti);
+    paddel.width = 120;
+    arrBou.length=0;
   }
 }
 function lose() {
@@ -490,6 +492,7 @@ function win() {
   if (numBricks === 0) {
     endGame = true;
     winner.style.display = "block";
+    document.body.classList.add("back");
   }
 }
 
