@@ -492,3 +492,31 @@ function win() {
     winner.style.display = "block";
   }
 }
+
+////////////////////////////////Bouns/////////////////////////////////
+
+function generatePowers(brick) {
+  numb = Math.floor(Math.random() * luck);
+  if (numb === luck - 1) {
+    let increseBall = new Image();
+    increseBall.src = allPower[Math.floor(Math.random() * 8)];
+    brick.img = increseBall;
+    brick.dy = 3;
+    arrBou.push(brick);
+    dropPower();
+  }
+}
+
+function dropPower() {
+  if (kickBall && gameScore != 0) {
+    arrBou.forEach((e) => {
+      ctx.drawImage(e.img, e.x + 44, e.y + 55);
+    });
+  }
+}
+
+function movePower() {
+  arrBou.forEach((e) => {
+    e.y += e.dy;
+  });
+}
