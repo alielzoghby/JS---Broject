@@ -1,68 +1,17 @@
 const lm = document.getElementById("lm");
 const nav = document.getElementById("nav");
-const btn1 = document.getElementById("btn1");
+const btns = document.querySelectorAll(".btn");
 
-btn1.addEventListener("click", (e) => {
-  lm.style.display = "none";
-  nav.style.display = "flex";
-  rowCount = 1;
-  level = 1;
-  ball.speed = 6;
-  startgame = 1;
-  initialize();
-});
+btns.forEach((e) => {
+  e.addEventListener("click", function () {
+    lm.style.display = "none";
+    nav.style.display = "flex";
 
-const btn2 = document.getElementById("btn2");
-btn2.addEventListener("click", (e) => {
-  lm.style.display = "none";
-  nav.style.display = "flex";
-  rowCount = 2;
-  level = 2;
-  ball.speed = 6.5;
-  startgame = 1;
-  initialize();
-});
+    rowCount = this.attributes[2].value;
+    level = this.attributes[3].value;
+    ball.speed = this.attributes[4].value;
 
-const btn3 = document.getElementById("btn3");
-btn3.addEventListener("click", (e) => {
-  lm.style.display = "none";
-  nav.style.display = "flex";
-  rowCount = 3;
-  level = 3;
-  ball.speed = 7;
-  startgame = 1;
-  initialize();
-});
-
-const btn4 = document.getElementById("btn4");
-btn4.addEventListener("click", (e) => {
-  lm.style.display = "none";
-  nav.style.display = "flex";
-  rowCount = 4;
-  level = 4;
-  ball.speed = 7.5;
-  startgame = 1;
-  initialize();
-});
-
-const btn5 = document.getElementById("btn5");
-btn5.addEventListener("click", (e) => {
-  lm.style.display = "none";
-  nav.style.display = "flex";
-  rowCount = 5;
-  level = 5;
-  ball.speed = 8;
-  startgame = 1;
-  initialize();
-});
-
-const btn6 = document.getElementById("btn6");
-btn6.addEventListener("click", (e) => {
-  lm.style.display = "none";
-  nav.style.display = "flex";
-  rowCount = 6;
-  level = 6;
-  ball.speed = 8.5;
-  startgame = 1;
-  initialize();
+    startgame = 1;
+    initialize();
+  });
 });

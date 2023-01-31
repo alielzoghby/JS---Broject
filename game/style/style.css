@@ -4,12 +4,13 @@
   box-sizing: border-box;
 }
 body {
+  height: 100vh;
   background-color: #091a2a;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  /* justify-content: center; */
+  justify-content: center;
   /* background: url("../img/wp2572370.jpg") ; */
 }
 body::after {
@@ -107,7 +108,6 @@ canvas {
   overflow: hidden;
   background: url("../../assets/img/bg/pngwing.com\ \(2\).png");
   background-size: cover;
-  /* display: none; */
 }
 i {
   transition: transform 0.25s ease-in-out;

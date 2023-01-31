@@ -1,130 +1,131 @@
-.loser{ 
-    width: 60%;
-    height: 60%;
-    display: none;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.loser {
+  width: 60%;
+  height: 60%;
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.loser img{
-    width: 100%;
-    position: absolute;
-    height: 100%;
+.loser img {
+  width: 100%;
+  position: absolute;
+  height: 100%;
 }
 
-.upperLoser{
-    width: 43%;
-    height: 60%;
-    position: relative;
-    z-index: 4;
-    /* background-color: black;  */
-    top: 32%;
-    left: 27%;
-    padding: 20px;
-    /* opacity: 0.5;  */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.upperLoser {
+  width: 43%;
+  height: 60%;
+  position: relative;
+  z-index: 4;
+  /* background-color: black; */
+  top: 32%;
+  left: 27%;
+  padding: 20px;
+  /* opacity: 0.5;  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.playAgain{
-    width: 60px;
-    height: 60px;
-    /* background-color: red; */
-    position: relative;
-    top: -10px;
-    left: 8px;
-    cursor: pointer;
+.playAgain {
+  width: 60px;
+  height: 60px;
+  /* background-color: red; */
+  position: relative;
+  top: -10px;
+  left: 8px;
+  cursor: pointer;
 }
 
-#finalMainMenu{
-    color: wheat;
-    display: inline;
-    font-size: 25px;
-    cursor: pointer;
+#finalMainMenu {
+  color: wheat;
+  display: inline;
+  font-size: 25px;
+  cursor: pointer;
 }
 
-#finalScore{
-    color: wheat;
-    display: inline;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 40px;
-    text-align: center;
+#finalScore {
+  color: wheat;
+  display: inline;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  text-align: center;
 }
 
-#finalMainMenu a{
-    text-decoration: none;
-    color:blueviolet;
-    transition: transform 0.25s ease-in-out;
+#finalMainMenu a {
+  text-decoration: none;
+  color: blueviolet;
+  transition: transform 0.25s ease-in-out;
 }
 
-#finalMainMenu a:hover, #finalMainMenu:hover{
-    text-decoration: none;
-    color: yellow;
-    transform: scale(1.2);
+#finalMainMenu a:hover,
+#finalMainMenu:hover {
+  text-decoration: none;
+  color: yellow;
+  transform: scale(1.2);
 }
 
 /* winner */
 
-.winner{
-    width: 60%;
-    height: 60%;
-    display: none;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.winner {
+  width: 60%;
+  height: 60%;
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.winner img{
-    width: 100%;
-    position: absolute;
-    height: 100%;
+.winner img {
+  width: 100%;
+  position: absolute;
+  height: 100%;
 }
 
-.upperWinner{
-    width: 43%;
-    height: 20%;
-    position: relative;
-    z-index: 4;
-    background-color: black; 
-    top: 72%;
-    left: 27.5%;
-    padding: 20px;
-    opacity: 0.5; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.upperWinner {
+  width: 43%;
+  height: 20%;
+  position: relative;
+  z-index: 4;
+  background-color: black;
+  top: 72%;
+  left: 27.5%;
+  padding: 20px;
+  opacity: 0.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#goToHome{
-    width: 30px;
-    height: 1000%;
-    position: relative;
-    top: 12px;
-    left: -110px;
-    color: wheat;
-    display: flex;
-    cursor: pointer;
-    /* background-color: green; */
+#goToHome {
+  width: 30px;
+  height: 1000%;
+  position: relative;
+  top: 12px;
+  left: -110px;
+  color: wheat;
+  display: flex;
+  cursor: pointer;
+  /* background-color: green; */
 }
 
-#winMainMenu{
-    width: 50px;
-    height: 1000%;
-    position: relative;
-    top: -10px;
-    left: 130px;
-    color: wheat;
-    /* background-color: brown; */
-    display: flex;
-    cursor: pointer;
+#winMainMenu {
+  width: 50px;
+  height: 1000%;
+  position: relative;
+  top: -10px;
+  left: 130px;
+  color: wheat;
+  /* background-color: brown; */
+  display: flex;
+  cursor: pointer;
 }
 
 /* #finalMainMenu a{
@@ -137,13 +138,13 @@
     transform: scale(1.2);
 } */
 
-.nextLevel{
-    width: 90px;
-    height: 1000%;
-    /* background-color: red;  */
-    display: flex;
-    position: relative;
-    top: 1px;
-    left: 7px;
-    cursor: pointer;
+.nextLevel {
+  width: 90px;
+  height: 1000%;
+  /* background-color: red;  */
+  display: flex;
+  position: relative;
+  top: 1px;
+  left: 7px;
+  cursor: pointer;
 }
