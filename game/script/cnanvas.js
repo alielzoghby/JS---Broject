@@ -67,7 +67,7 @@ let shpball;
 var endGame = false;
 
 /////////////////////////////////////////////////////bounus////////////////////////
-let luck = 3;
+let luck = 2;
 let allPower = [
   "../assets/img/power/width.png",
   "../assets/img/power/balls.png",
@@ -477,7 +477,7 @@ function GoToNextLevel() {
     initialize();
     clearInterval(ti);
     paddel.width = 120;
-    arrBou.length=0;
+    arrBou.length = 0;
   }
 }
 function lose() {
@@ -522,4 +522,75 @@ function movePower() {
   arrBou.forEach((e) => {
     e.y += e.dy;
   });
+}
+
+function powerPaddelCollision() {
+  arrBou.forEach((e, i) => {
+    if (
+      e.x + 20 * 0.5 > paddel.x - paddel.width * 0.5 &&
+      e.x - 20 * 0.5 < paddel.x + paddel.width * 0.5 &&
+      e.y + 100 * 0.5 > paddel.y - paddel.height &&
+      e.y - 100 * 0.5 < paddel.y + paddel.height
+    ) {
+      if (e.img.src.includes("width")) {
+        if (baddelWidthFlag) {
+          clearInterval(ti);
+          baddelWidth();
+        } else {
+          baddelWidth();
+        }
+      }
+      if (e.img.src.includes("heart")) lifeIncress();
+      if (e.img.src.includes("balls")) ballsIncress();
+
+      arrBou.splice(i, 1);
+    }
+    if (e.y > paddel.y - paddel.height) {
+      arrBou.splice(i, 1);
+    }
+  });
+}
+
+////////////////////////////// function power
+
+function baddelWidth() {
+  paddel.width = 240;
+  baddelWidthFlag = true;
+  ti = setTimeout(() => {
+    paddel.width = 120;
+  }, 8000);
+}
+
+function lifeIncress() {
+  LIFE += 1;
+}
+
+function ballsIncress() {
+  let arr = [];
+
+  balls.forEach((e) => {
+    let addBall1 = {
+      radius: BALL_RADIUS,
+      speed: 5 * level,
+    };
+    addBall1.x = e.x + 20;
+    addBall1.y = e.y - 20;
+    addBall1.dx = e.dx + 1;
+    addBall1.dy = e.dy;
+
+    arr.push(addBall1);
+
+    let addBall2 = {
+      radius: BALL_RADIUS,
+      speed: 5 * level,
+    };
+    addBall2.x = e.x - 20;
+    addBall2.y = e.y - 20;
+    addBall2.dx = e.dx + 1;
+    addBall2.dy = e.dy;
+
+    arr.push(addBall2);
+  });
+
+  balls = balls.concat(arr);
 }
