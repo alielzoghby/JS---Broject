@@ -571,7 +571,7 @@ function ballsIncress() {
   balls.forEach((e) => {
     let addBall1 = {
       radius: BALL_RADIUS,
-      speed: 5 * level,
+      speed: 6,
     };
     addBall1.x = e.x + 20;
     addBall1.y = e.y - 20;
@@ -582,7 +582,7 @@ function ballsIncress() {
 
     let addBall2 = {
       radius: BALL_RADIUS,
-      speed: 5 * level,
+      speed: 6 ,
     };
     addBall2.x = e.x - 20;
     addBall2.y = e.y - 20;
